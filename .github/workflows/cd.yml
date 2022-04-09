@@ -1,5 +1,8 @@
 name: CD
 
+env:
+  AWS_REGION: eu-west-1
+
 on:
   push:
     branches:
