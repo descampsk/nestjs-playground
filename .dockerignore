@@ -1,0 +1,9 @@
+dist/
+node_modules/
+
+Dockerfile
+.dockerignore
+
+copilot
+
+.github
