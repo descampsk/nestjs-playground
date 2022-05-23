@@ -18,4 +18,6 @@ RUN npm install --production --frozen-lock
 
 COPY --from=build ./dist ./dist
 
+EXPOSE 3000
+
 CMD ["node", "dist/main.js"]

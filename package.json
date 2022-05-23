@@ -1,10 +1,10 @@
 {
   "name": "demo-aws-app-runner",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.2.0",
+  "description": "Sample code to demonstrate AWS App Runner",
+  "author": "Kévin Descamps",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
