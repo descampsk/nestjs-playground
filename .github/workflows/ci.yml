@@ -64,10 +64,10 @@ jobs:
           name: code-coverage-report-branch
           path: .
 
-      - name: Download master codecoverage
+      - name: Download main codecoverage
         uses: actions/download-artifact@v2
         with:
-          name: code-coverage-report-master
+          name: code-coverage-report-main
           path: .
 
       - name: Test and coverage
@@ -75,4 +75,4 @@ jobs:
         with:
           working-directory: .
           coverage-file: ./report-branch.json
-          base-coverage-file: ./report-master.json
+          base-coverage-file: ./report-main.json
