@@ -22,7 +22,8 @@ export const options = {
 const APP_RUNNER_URL = 'https://ktrhwr52ip.eu-west-1.awsapprunner.com';
 
 export default function () {
-  const res = http.get(`${APP_RUNNER_URL}/prime?limit=2000000`);
+  const limit = Math.floor(Math.random() * 100) * 20000;
+  const res = http.get(`${APP_RUNNER_URL}/prime?limit=${limit}`);
   check(res, { 'status was 200': (r) => r.status == 200 });
   if (res.status !== 200) {
     console.log('status', res.status, 'body', res.body);
