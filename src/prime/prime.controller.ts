@@ -1,12 +1,11 @@
 import {
-  CacheInterceptor,
-  CacheTTL,
   Controller,
   Get,
   ParseIntPipe,
   Query,
   UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { PrimeService } from './prime.service';
 
 @Controller('prime')
