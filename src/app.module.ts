@@ -1,12 +1,6 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  RequestMethod,
-  CacheModule,
-  Inject,
-  CACHE_MANAGER,
-} from '@nestjs/common';
-import type { RedisClientOptions } from 'redis';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { LoggerModule } from 'nestjs-pino';
+import { v4 as uuidV4 } from 'uuid';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { PrimeController } from './prime/prime.controller';
 import { PrimeService } from './prime/prime.service';
@@ -19,6 +13,12 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     HealthModule,
     CacheModuleRegistered,
+    LoggerModule.forRoot({
+      pinoHttp: {
+        genReqId: () => uuidV4(),
+        quietReqLogger: true,
+      },
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
