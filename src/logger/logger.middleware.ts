@@ -12,7 +12,6 @@ export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const { method, url, path, query, params, body } = req;
     const message = `Receive ${method} ${url} request`;
-    this.logger.info('test');
     this.logger.info({
       message,
       method,

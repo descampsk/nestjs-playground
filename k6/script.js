@@ -4,7 +4,7 @@ import { check, sleep } from 'k6';
 export const options = {
   ext: {
     loadimpact: {
-      projectID: 3632865,
+      projectID: 3641998,
       // Test runs with the same name groups test runs together
       name: 'demo-aws-app-runner',
       distribution: {
@@ -13,16 +13,16 @@ export const options = {
     },
   },
   stages: [
-    { duration: '4m', target: 50 },
-    { duration: '2m', target: 50 },
+    { duration: '4m', target: 20 },
+    { duration: '2m', target: 20 },
     { duration: '20s', target: 0 },
   ],
 };
 
-const APP_RUNNER_URL = 'https://ktrhwr52ip.eu-west-1.awsapprunner.com';
+const APP_RUNNER_URL = 'https://eav78szsmc.eu-west-1.awsapprunner.com';
 
 export default function () {
-  const limit = Math.floor(Math.random() * 100) * 20000;
+  const limit = Math.floor(Math.random() * 100) * 200000;
   const res = http.get(`${APP_RUNNER_URL}/prime?limit=${limit}`);
   check(res, { 'status was 200': (r) => r.status == 200 });
   if (res.status !== 200) {
