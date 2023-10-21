@@ -3,11 +3,5 @@
   "extends": [
     "config:base"
   ],
-  "platformAutomerge": true,
-  "packageRules": [
-    {
-      "description": "Automerge updates",
-      "automerge": true
-    }
-  ]
+  "automerge": true
 }
