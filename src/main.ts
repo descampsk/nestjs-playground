@@ -10,6 +10,7 @@ async function bootstrap() {
     new LoggerErrorInterceptor(),
     new XRayInterceptor(app.get(HttpAdapterHost)),
   );
-  await app.listen(3000);
+  const port = Number.parseInt(process.env.PORT || '3000', 10);
+  await app.listen(port);
 }
 bootstrap();
