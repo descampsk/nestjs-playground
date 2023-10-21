@@ -52,7 +52,7 @@ jobs:
           npm run test -- --maxWorkers=2 --coverage --testLocationInResults --json --outputFile=report-${{ matrix.branch }}.json
 
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report-${{ matrix.branch }}
           path: report-${{ matrix.branch }}.json
