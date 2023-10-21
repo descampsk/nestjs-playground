@@ -1,12 +1,20 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrimeService } from './prime.service';
+import { getLoggerToken } from 'nestjs-pino';
+import { mockLogger } from '../logger/mocks/logger.mock';
 
 describe('PrimeNumberService', () => {
   let service: PrimeService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PrimeService],
+      providers: [
+        PrimeService,
+        {
+          provide: getLoggerToken(PrimeService.name),
+          useValue: mockLogger,
+        },
+      ],
     }).compile();
 
     service = module.get<PrimeService>(PrimeService);
