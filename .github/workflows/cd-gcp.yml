@@ -26,4 +26,4 @@ jobs:
             project_id: kdescamps-playground
 
       - name: Deploy on Google Cloud Run
-        run: gcloud run deploy prime-demo --project kdescamps-playground --region europe-west1 --source . --allow-unauthenticated --revision-suffix ${{ github.event.release.tag_name }}
+        run: gcloud run deploy prime-demo --project kdescamps-playground --region europe-west1 --source . --allow-unauthenticated
