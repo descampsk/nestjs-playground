@@ -31,7 +31,7 @@
     "@nestjs/platform-express": "9.4.0",
     "@nestjs/terminus": "9.2.2",
     "@types/cache-manager-redis-store": "2.0.1",
-    "aws-xray-sdk": "3.5.0",
+    "aws-xray-sdk": "3.5.2",
     "cache-manager": "^5.2.0",
     "cache-manager-ioredis-yet": "1.1.0",
     "cache-manager-redis-store": "3.0.1",
