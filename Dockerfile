@@ -1,4 +1,4 @@
-FROM node:20-slim as build
+FROM node:21-slim as build
 
 ADD package.json .
 ADD package-lock.json .
@@ -9,7 +9,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:20-slim
+FROM node:21-slim
 
 ADD package.json .
 ADD package-lock.json .
