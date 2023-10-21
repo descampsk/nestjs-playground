@@ -1,0 +1,27 @@
+name: CD GCP
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    name: Deploy on Google Cloud Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Auth Google
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_GITHUB_ACTION_SA }}
+
+      - name: Setup Gcloud
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+            project_id: kdescamps-playground
+
+      - name: Deploy on Google Cloud Run
+        run: gcloud run deploy prime-demo --project kdescamps-playground --region europe-west1 --source . --allow-unauthenticated --revision-suffix ${{ github.event.release.tag_name }}
