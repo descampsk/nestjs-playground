@@ -16,7 +16,7 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
 
       - name: Auth Google
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_GITHUB_ACTION_SA }}
 
