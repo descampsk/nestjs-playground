@@ -29,7 +29,7 @@
     "@nestjs/config": "3.2.0",
     "@nestjs/core": "10.3.3",
     "@nestjs/platform-express": "10.3.3",
-    "@nestjs/terminus": "10.2.2",
+    "@nestjs/terminus": "10.2.3",
     "@types/cache-manager-redis-store": "2.0.4",
     "aws-xray-sdk": "3.5.3",
     "cache-manager": "^5.2.0",
