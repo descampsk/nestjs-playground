@@ -1,36 +1,29 @@
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
-import { LoggerModule } from 'nestjs-pino';
-import { v4 as uuidV4 } from 'uuid';
-import { LoggerMiddleware } from './logger/logger.middleware';
-import { PrimeController } from './prime/prime.controller';
-import { PrimeService } from './prime/prime.service';
-import { HealthModule } from './health/health.module';
-import { XRayMiddleware } from './xray/xray.middleware';
-import { CacheModuleRegistered } from './cache/cache.config';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
+import { HealthModule } from './core/health/health.module';
+import { ConditionalModule, ConfigModule } from '@nestjs/config';
+import { LoggerConfig } from './core/logger/logger.config';
+import { PrimeModule } from './prime/prime.module';
+import { Auth0Module } from './auth0/auth0.module';
+
+const conditionalModules = [PrimeModule, Auth0Module];
+const registerConditionalModules = conditionalModules.map((module) =>
+  ConditionalModule.registerWhen(
+    module,
+    (env) =>
+      env['MODULES_ENABLED']?.includes(module.name) ||
+      env['MODULES_ENABLED'] === 'ALL',
+  ),
+);
 
 @Module({
   imports: [
-    HealthModule,
-    CacheModuleRegistered,
-    LoggerModule.forRoot({
-      pinoHttp: {
-        genReqId: () => uuidV4(),
-        quietReqLogger: true,
-      },
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
     }),
+    LoggerConfig,
+    HealthModule,
+    ...registerConditionalModules,
   ],
-  controllers: [PrimeController],
-  providers: [PrimeService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(XRayMiddleware, LoggerMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
-}
+export class AppModule {}

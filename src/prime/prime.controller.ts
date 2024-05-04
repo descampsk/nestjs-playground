@@ -7,7 +7,9 @@ import {
 } from '@nestjs/common';
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { PrimeService } from './prime.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('prime')
 @Controller('prime')
 @UseInterceptors(CacheInterceptor)
 export class PrimeController {
