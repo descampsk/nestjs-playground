@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 import { mainConfig } from './main.config';
 import { type NestExpressApplication } from '@nestjs/platform-express';
 
+/**
+ * The main function to bootstrap the application.
+ */
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bufferLogs: true,

@@ -8,6 +8,7 @@ RUN npm install --frozen-lock
 COPY . .
 
 RUN npm run build
+RUN npm run build:compodoc
 
 FROM node:21-alpine
 
@@ -21,6 +22,6 @@ ADD package-lock.json .
 RUN npm install --omit=dev --frozen-lock
 
 COPY --from=build ./dist ./dist
-COPY ./public ./public
+COPY --from=build ./compodoc ./compodoc
 
 CMD ["doppler", "run", "--", "node", "dist/main.js"]
