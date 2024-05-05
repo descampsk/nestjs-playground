@@ -1,9 +1,20 @@
 import { Injectable, Logger } from '@nestjs/common';
 
+/**
+ * The prime service allows you to compute prime numbers.
+ */
 @Injectable()
 export class PrimeService {
+  /**
+   * PrimeService Logger
+   */
   private readonly logger = new Logger(PrimeService.name);
 
+  /**
+   * Compute prime numbers up to the limit.
+   * @param limit limit of the prime numbers to compute
+   * @returns A list of prime numbers up to the limit
+   */
   public computePrimeNumber(limit: number): number[] {
     this.logger.log({ message: 'Computing prime number...', limit });
     const primesBoolean: boolean[] = [];
