@@ -21,5 +21,6 @@ ADD package-lock.json .
 RUN npm install --omit=dev --frozen-lock
 
 COPY --from=build ./dist ./dist
+COPY ./public ./public
 
 CMD ["doppler", "run", "--", "node", "dist/main.js"]
