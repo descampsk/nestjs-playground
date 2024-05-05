@@ -9,6 +9,9 @@ jobs:
   deploy:
     name: Deploy on Google Cloud Run
     runs-on: ubuntu-latest
+    environment:
+      name: Google Cloud Run
+      url: https://nestjs.playground.gcp.kevindescamps.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4
