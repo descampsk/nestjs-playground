@@ -1,8 +1,10 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { buildSwaggerConfig } from './core/swagger';
+import { ValidationPipe } from '@nestjs/common';
 import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
+import { type NestExpressApplication } from '@nestjs/platform-express';
+import { buildAuthSwaggerConfig } from './modules/auth0/auth0.swagger';
+import { buildPrimeSwaggerConfig } from './modules/prime/prime.swagger';
 
-export function mainConfig(app: INestApplication) {
+export function mainConfig(app: NestExpressApplication) {
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
@@ -15,7 +17,10 @@ export function mainConfig(app: INestApplication) {
   app.getHttpAdapter().getInstance().disable('x-powered-by');
   app.enableCors();
 
-  buildSwaggerConfig(app);
+  const swaggerBuilders = [buildAuthSwaggerConfig, buildPrimeSwaggerConfig];
+  for (const swaggerBuilder of swaggerBuilders) {
+    swaggerBuilder(app);
+  }
 
   app.useLogger(app.get(Logger));
 }

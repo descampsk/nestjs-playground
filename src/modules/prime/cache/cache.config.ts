@@ -3,13 +3,13 @@ import { redisStore } from 'cache-manager-redis-store';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import {
   CacheModule,
-  CacheStore,
-  CacheModuleOptions,
+  type CacheStore,
+  type CacheModuleOptions,
 } from '@nestjs/cache-manager';
 
-const getCacheModuleConfig = async (
+const getCacheModuleConfig = (
   configService: ConfigService,
-): Promise<CacheModuleOptions<RedisClientOptions>> => {
+): CacheModuleOptions<RedisClientOptions> => {
   if (configService.get<string>('REDIS_ENABLED', 'false') === 'true')
     return {
       isGlobal: true,

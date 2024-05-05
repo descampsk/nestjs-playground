@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Request } from 'express';
+import { type Request } from 'express';
 
 type ToObject<T> = T extends undefined ? {} : T;
 type GenericParamsType = Record<string, string>;

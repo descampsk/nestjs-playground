@@ -1,90 +1,43 @@
-# Demo AWS App Runner
+# NestJS Playground
 
 ## Description
 
-This repository contains a sample code to demonstrate the usage of AWS App runner and the CD associated.
-It uses [Nest](https://github.com/nestjs/nest) framework.
+This is a playground to test the NestJS framework, try features and best practices, experiment Cloud Deployment. Your imagination is the limit.
 
-It offer a single endpoint `GET /prime?limit=10` which answers with the list of prime numbers below the limit.
+## Features
 
-## Installation
+All features are decoupled in modules, so you can enable or disable them easily.
+There are located in [src/modules](./src/modules) folder.
+
+To enable some features, you can use the variable `MODULES_ENABLED` in the `.env` file.
+
+If you want all features, you can use the value `ALL` or let the variable empty.
+If you want to enable only some features, you can use a comma separated list of the module names. Example: `MODULES_ENABLED=PrimeModule,Auth0Module`.
+
+The available modules are:
+- [PrimeModule](./src/modules/prime/): Simple controller to test Cloud Deployement with AWS APP Runner and Cloud Run.
+- [Auth0Module](./src/modules/auth0/): Module to test the Auth0 integration with NestJS.
+
+## Usage
 
 ```bash
+# Install dependencies
 $ npm install
-```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
+# Run the app
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
-
-# Get the prime numbers
-$ curl localhost:3000/prime?limit=100
-```
-
-## Test
-
-```bash
-# unit tests
+# Run the unit test
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
-## Docker
+## Live environment
 
-```bash
-# Connect to AWS ECR
-$ make docker-login
+The project is deployed in Google Cloud Run.
 
-# Build the image
-$ make docker-build
+### Google Cloud Run
 
-# Run the image
-$ make docker-run
-
-# Push the image
-$ make docker-push
-```
-
-## Copilot
-
-```bash
-# Export AWS configuration
-$ export AWS_PROFILE=innovorder-lab
-$ export AWS_REGION=eu-west-1
-
-# Init the application
-$ copilot init
-# Welcome to the Copilot CLI! We're going to walk you through some questions
-# to help you get set up with a containerized application on AWS. An application is a collection of
-# containerized services that operate together.
-
-# Application name: demo-aws-app-runner
-# Workload type: Request-Driven Web Service
-# Service name: app
-# Manifest file for service app already exists. Skipping configuration.
-# Ok great, we'll set up a Request-Driven Web Service named app in application demo-aws-app-runner.
-
-# Init the environment
-$ copilot env init --profile innovorder-lab
-# Environment name: lab
-# Default environment configuration? Yes, use default.
-
-# Deploy
-$ copilot deploy
-
-# Delete
-$ copilot app delete
-```
+The main url is [https://nestjs.playground.gcp.kevindescamps.com](https://nestjs.playground.gcp.kevindescamps.com).
+The different module documentations are:
+- [PrimeModule](https://nestjs.playground.gcp.kevindescamps.com/prime/docs/)
+- [Auth0Module](https://nestjs.playground.gcp.kevindescamps.com/auth0/docs/)
