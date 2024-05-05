@@ -44,9 +44,10 @@ export class AuthorizationGuard implements CanActivate {
       await validateAccessToken(request, response);
       const { auth } = request;
       request.user = {
-        userId: auth?.payload.sub as string,
-        permissions: auth?.payload['permissions'] as string[],
+        userId: auth!.payload.sub!,
+        permissions: auth!.payload.permissions as string[],
       };
+
       return true;
     } catch (error) {
       if (error instanceof InvalidTokenError) {
@@ -73,7 +74,8 @@ function createPermissionsGuard(
 
       const permissionCheck = promisify(
         claimCheck((payload) => {
-          const permissionsJwtClaim = (payload.permissions as string[]) || [];
+          const permissionsJwtClaim =
+            (payload.permissions as string[] | undefined) || [];
 
           const hasRequiredRoutePermissions = requiredRoutePermissions.every(
             (requiredRoutePermission) =>

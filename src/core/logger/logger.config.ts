@@ -1,5 +1,6 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { IncomingMessage } from 'http';
+import { type Request, type Response } from 'express';
+import { type IncomingMessage } from 'http';
 import { LoggerModule } from 'nestjs-pino';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +11,7 @@ const customReceivedMessage = (req: IncomingMessage) => {
 
 const customSuccessMessage = (
   req: IncomingMessage,
-  res: any,
+  res: Response,
   responseTime: number,
 ) => {
   const { method, url } = req;
@@ -29,7 +30,9 @@ export const LoggerConfig = LoggerModule.forRootAsync({
         autoLogging: true,
         base: null,
         quietReqLogger: true,
-        genReqId: (request) => request.headers['x-correlation-id'] || uuidv4(),
+        genReqId: (request: Request) =>
+          (request.headers['x-correlation-id'] as string | undefined) ??
+          uuidv4(),
         messageKey: 'message',
         customReceivedMessage,
         customSuccessMessage,

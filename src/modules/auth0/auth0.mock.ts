@@ -9,7 +9,7 @@ export const mockAuth0Guard = (user: {
     .mockImplementation(() => (req, res, next) => {
       req.auth = {
         payload: {
-          [`${process.env.AUTH0_AUDIENCE}/email`]: user.email,
+          [`${process.env.AUTH0_AUDIENCE!}/email`]: user.email,
           permissions: user.permissions,
         },
       } as unknown as expressOauth2JwtBearer.AuthResult;

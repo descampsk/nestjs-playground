@@ -2,13 +2,18 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir : __dirname, 
+    tsconfigRootDir : __dirname,
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
-    'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:prettier/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript'
   ],
   root: true,
   env: {
@@ -21,5 +26,30 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    "@typescript-eslint/no-non-null-assertion": 'off',
+    "@typescript-eslint/no-extraneous-class": ["error", {
+      "allowWithDecorator": true
+    }],
+    '@typescript-eslint/dot-notation': [
+      'error',
+      {
+          allowIndexSignaturePropertyAccess: true,
+      },
+  ],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+            disallowTypeAnnotations: true,
+            fixStyle: 'inline-type-imports',
+            prefer: 'type-imports',
+        },
+    ],
+    '@typescript-eslint/restrict-template-expressions': ['error', {
+      'allowNumber': true,
+      'allowBoolean': true,
+      'allowNullish': true,
+    }]
   },
 };

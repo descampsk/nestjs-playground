@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, type TestingModule } from '@nestjs/testing';
 import { PrimeService } from './prime.service';
 import { getLoggerToken } from 'nestjs-pino';
-import { mockLogger } from '../core/logger/mocks/logger.mock';
+import { mockLogger } from '../../core/logger/mocks/logger.mock';
 
 describe('PrimeNumberService', () => {
   let service: PrimeService;
