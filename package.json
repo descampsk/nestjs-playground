@@ -35,7 +35,7 @@
     "@nestjs/terminus": "10.2.3",
     "@types/cache-manager-redis-store": "2.0.4",
     "auth0": "4.7.0",
-    "cache-manager": "5.7.2",
+    "cache-manager": "5.7.3",
     "cache-manager-ioredis-yet": "2.1.1",
     "cache-manager-redis-store": "3.0.1",
     "class-transformer": "0.5.1",
