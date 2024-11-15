@@ -31,7 +31,7 @@
     "@nestjs/core": "10.4.7",
     "@nestjs/platform-express": "10.4.7",
     "@nestjs/serve-static": "4.0.2",
-    "@nestjs/swagger": "8.0.5",
+    "@nestjs/swagger": "8.0.7",
     "@nestjs/terminus": "10.2.3",
     "@types/cache-manager-redis-store": "2.0.4",
     "auth0": "4.13.0",
