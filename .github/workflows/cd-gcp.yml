@@ -24,7 +24,7 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_GITHUB_ACTION_SA }}
 
       - name: Setup Gcloud
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
         with:
             project_id: kdescamps-playground
 
