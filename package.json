@@ -48,7 +48,7 @@
     "uuid": "11.1.0"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "1.1.27",
+    "@compodoc/compodoc": "1.1.28",
     "@nestjs/cli": "10.4.9",
     "@nestjs/schematics": "10.2.3",
     "@nestjs/testing": "10.4.20",
