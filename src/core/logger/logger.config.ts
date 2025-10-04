@@ -2,6 +2,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { type Request, type Response } from 'express';
 import { type IncomingMessage } from 'http';
 import { LoggerModule } from 'nestjs-pino';
+// eslint-disable-next-line import/no-unresolved
 import { v4 as uuidv4 } from 'uuid';
 
 const customReceivedMessage = (req: IncomingMessage) => {
