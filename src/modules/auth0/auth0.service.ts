@@ -21,6 +21,6 @@ export class Auth0Service {
   }
 
   public async getUsers() {
-    return this.managementClient.users.getAll();
+    return this.managementClient.users.list();
   }
 }

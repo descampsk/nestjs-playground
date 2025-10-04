@@ -1,11 +1,7 @@
 import type { RedisClientOptions } from 'redis';
-import { redisStore } from 'cache-manager-redis-store';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import {
-  CacheModule,
-  type CacheStore,
-  type CacheModuleOptions,
-} from '@nestjs/cache-manager';
+import { CacheModule, type CacheModuleOptions } from '@nestjs/cache-manager';
+import KeyvRedis from '@keyv/redis';
 
 const getCacheModuleConfig = (
   configService: ConfigService,
@@ -13,8 +9,11 @@ const getCacheModuleConfig = (
   if (configService.get<string>('REDIS_ENABLED', 'false') === 'true')
     return {
       isGlobal: true,
-      store: redisStore as unknown as CacheStore,
-      url: configService.get<string>('REDIS_URL', 'redis://localhost:6379'),
+      stores: [
+        new KeyvRedis(
+          configService.get<string>('REDIS_URL', 'redis://localhost:6379'),
+        ),
+      ],
     };
 
   return {

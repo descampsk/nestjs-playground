@@ -7,6 +7,7 @@ import {
   ForbiddenException,
   UnauthorizedException,
   Type,
+  Logger,
 } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { auth0ConfigRegistered } from './auth0.config';
@@ -68,6 +69,8 @@ function createPermissionsGuard(
 ): Type<CanActivate> {
   @Injectable()
   class PermissionsGuardImpl implements CanActivate {
+    private readonly logger = new Logger(AuthorizationGuard.name);
+
     async canActivate(context: ExecutionContext): Promise<boolean> {
       const request = context.switchToHttp().getRequest<Request>();
       const response = context.switchToHttp().getResponse<Response>();
@@ -95,6 +98,7 @@ function createPermissionsGuard(
 
         return true;
       } catch (error) {
+        this.logger.error(error);
         throw new ForbiddenException('Permission denied');
       }
     }
