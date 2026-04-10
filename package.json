@@ -41,7 +41,7 @@
     "cache-manager-redis-store": "3.0.1",
     "class-transformer": "0.5.1",
     "class-validator": "0.15.1",
-    "express-oauth2-jwt-bearer": "1.7.4",
+    "express-oauth2-jwt-bearer": "1.8.0",
     "nestjs-pino": "4.6.1",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.1.3",
