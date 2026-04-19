@@ -73,7 +73,7 @@ jobs:
           path: .
 
       - name: Test and coverage
-        uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
+        uses: artiomtr/jest-coverage-report-action@v2.3
         with:
           working-directory: .
           coverage-file: ./report-branch.json
